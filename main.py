@@ -101,3 +101,9 @@ from scripts.ds_analysis import forecast_pollution
 
 forecast_cities = ["Mumbai", "Nashik", "Pune"]
 forecast_pollution(df, forecast_cities)
+
+
+# Run anomaly detection
+from scripts.ds_analysis import detect_anomalous_indian_cities
+detect_anomalous_indian_cities(df)
+
