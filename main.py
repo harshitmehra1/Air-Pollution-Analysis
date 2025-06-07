@@ -47,7 +47,22 @@ plt.tight_layout()
 plt.savefig('outputs/graphs/top10_polluted_2022.png')
 plt.show()
 
-# --- 3. Monthly Average Pollution (India – 2022) ---
+# --- 3. Top 10 Least Polluted Cities in 2022 ---
+least10_polluted = df[['CityName', 'Country', '2022']].dropna().sort_values(by='2022', ascending=True).head(10)
+least10_polluted.to_csv('outputs/top10_least_polluted_2022.csv', index=False)
+
+plt.figure(figsize=(10, 6))
+sns.barplot(data=least10_polluted, y="CityName", x="2022", palette="Greens_r")
+plt.title('Top 10 Least Polluted Cities (2022)')
+plt.xlabel('Pollution Level')
+plt.ylabel('City')
+plt.tight_layout()
+plt.savefig('outputs/graphs/top10_least_polluted_2022.png')
+plt.show()
+
+
+
+# --- 4. Monthly Average Pollution (India – 2022) ---
 monthly_avg = df[['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
                   'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].mean()
 
@@ -61,7 +76,7 @@ plt.tight_layout()
 plt.savefig('outputs/graphs/monthly_avg_pollution.png')
 plt.show()
 
-# --- 4. Cities with Most Improvement & Decline (2017 vs 2022) ---
+# --- 5. Cities with Most Improvement & Decline (2017 vs 2022) ---
 df['Change_2017_2022'] = df['2022'] - df['2017']
 change_df = df[['CityName', 'Change_2017_2022']].dropna()
 top_changes = change_df.sort_values(by='Change_2017_2022', ascending=False)
