@@ -13,7 +13,7 @@ print(df.head())
 
 # --- Top 10 Most Polluted Cities ---
 top10_polluted = df[['City', '2022']].sort_values(by='2022', ascending=False).head(10)
-print("Top 10 Most Polluted Cities in 2022:")
+print("\nTop 10 Most Polluted Cities in 2022:")
 print(top10_polluted)
 top10_polluted.to_csv('outputs/top10_most_polluted_2022.csv', index=False)
 
@@ -47,3 +47,9 @@ plt.ylabel('Average Pollution Level')
 plt.grid(True)
 plt.savefig('outputs/graphs/yearly_trend.png')
 plt.show()
+
+
+
+# Save the full cleaned data to CSV for Power BI use
+df.to_csv('data/cleaned_air_pollution.csv', index=False)
+
