@@ -61,7 +61,6 @@ plt.savefig('outputs/graphs/top10_least_polluted_2022.png')
 plt.show()
 
 
-
 # --- 4. Monthly Average Pollution (India – 2022) ---
 monthly_avg = df[['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
                   'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].mean()
