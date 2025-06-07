@@ -2,56 +2,81 @@
 
 from scripts.data_cleaning import load_and_clean_data
 import matplotlib.pyplot as plt
+import seaborn as sns
 import pandas as pd
 import os
 
-# Create necessary directories if they don't exist
+# Set Seaborn style
+sns.set(style="whitegrid")
+
+# Create output folders
 os.makedirs('outputs/graphs', exist_ok=True)
 os.makedirs('outputs', exist_ok=True)
 
 # Load and clean data
 df = load_and_clean_data('data/Air Pollution.csv')
+df.to_csv('data/cleaned_air_pollution.csv', index=False)
 
-# Check basic info
-print(df.info())
-print(df.head())
+# --- 1. Multi-line Plot: Mumbai, Pune, Nashik ---
+neubrain_cities = ['Mumbai', 'Pune', 'Nashik']
+df_neubrain = df[df['CityName'].isin(neubrain_cities)]
+df_neubrain = df_neubrain.set_index('CityName')[['2017', '2018', '2019', '2020', '2021', '2022']].T
 
-# --- Top 10 Most Polluted Cities ---
+plt.figure(figsize=(10, 6))
+for city in df_neubrain.columns:
+    sns.lineplot(data=df_neubrain[city], label=city, marker="o")
+plt.title('Pollution Trend (2017–2022) – Mumbai, Pune, Nashik')
+plt.xlabel('Year')
+plt.ylabel('Pollution Level')
+plt.legend()
+plt.grid(True)
+plt.tight_layout()
+plt.savefig('outputs/graphs/neubrain_cities_trend.png')
+plt.show()
+
+# --- 2. Top 10 Most Polluted Cities in 2022 (Swarmplot) ---
 top10_polluted = df[['CityName', 'Country', '2022']].sort_values(by='2022', ascending=False).head(10)
-print("\nTop 10 Most Polluted Cities in 2022:")
-print(top10_polluted)
 top10_polluted.to_csv('outputs/top10_most_polluted_2022.csv', index=False)
 
-# --- Top 10 Least Polluted Cities ---
-least_polluted = df[df['2022'] > 0][['CityName', 'Country', '2022']].sort_values(by='2022', ascending=True).head(10)
-print("\nTop 10 Least Polluted Cities in 2022:")
-print(least_polluted)
-least_polluted.to_csv('outputs/top10_least_polluted_2022.csv', index=False)
+plt.figure(figsize=(10, 6))
+sns.barplot(data=top10_polluted, y="CityName", x="2022", palette="Reds_r")
+plt.title('Top 10 Most Polluted Cities (2022)')
+plt.xlabel('Pollution Level')
+plt.ylabel('City')
+plt.tight_layout()
+plt.savefig('outputs/graphs/top10_polluted_2022.png')
+plt.show()
 
-# --- Monthly Trend Plot ---
+# --- 3. Monthly Average Pollution (India – 2022) ---
 monthly_avg = df[['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
                   'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']].mean()
 
 plt.figure(figsize=(10, 6))
-monthly_avg.plot(marker='o', color='blue')
-plt.title('Monthly Average Pollution (2022)')
+sns.lineplot(x=monthly_avg.index, y=monthly_avg.values, marker='o', color='steelblue')
+plt.title('Monthly Average Pollution (India – 2022)')
 plt.xlabel('Month')
 plt.ylabel('Average Pollution Level')
 plt.grid(True)
-plt.savefig('outputs/graphs/monthly_trend_2022.png')
+plt.tight_layout()
+plt.savefig('outputs/graphs/monthly_avg_pollution.png')
 plt.show()
 
-# --- Yearly Trend Plot ---
-yearly_avg = df[['2017', '2018', '2019', '2020', '2021', '2022']].mean()
+# --- 4. Cities with Most Improvement & Decline (2017 vs 2022) ---
+df['Change_2017_2022'] = df['2022'] - df['2017']
+change_df = df[['CityName', 'Change_2017_2022']].dropna()
+top_changes = change_df.sort_values(by='Change_2017_2022', ascending=False)
 
-plt.figure(figsize=(8, 6))
-yearly_avg.plot(marker='o', color='green')
-plt.title('Yearly Average Pollution Trend')
-plt.xlabel('Year')
-plt.ylabel('Average Pollution Level')
-plt.grid(True)
-plt.savefig('outputs/graphs/yearly_trend.png')
+top_worsened = top_changes.head(5)
+top_improved = top_changes.tail(5)
+compare_df = pd.concat([top_improved, top_worsened])
+compare_df = compare_df.set_index('CityName')
+
+plt.figure(figsize=(10, 6))
+colors = ['#ff9999' if x > 0 else '#a8e6cf' for x in compare_df['Change_2017_2022']]
+compare_df['Change_2017_2022'].plot(kind='barh', color=colors)
+plt.axvline(0, color='black', linestyle='--')
+plt.title('Cities with Most Improvement & Decline (2017–2022)')
+plt.xlabel('Change in Pollution Level')
+plt.tight_layout()
+plt.savefig('outputs/graphs/improvement_vs_decline.png')
 plt.show()
-
-# Save the full cleaned data to CSV for Power BI use
-df.to_csv('data/cleaned_air_pollution.csv', index=False)
