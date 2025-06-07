@@ -94,3 +94,10 @@ plt.xlabel('Change in Pollution Level')
 plt.tight_layout()
 plt.savefig('outputs/graphs/improvement_vs_decline.png')
 plt.show()
+
+
+# --- Data Science Analysis ---
+from scripts.ds_analysis import forecast_pollution
+
+forecast_cities = ["Mumbai", "Nashik", "Pune"]
+forecast_pollution(df, forecast_cities)
