@@ -1,89 +1,96 @@
 # 🌍 Air Pollution Analysis Project
 
 This repository contains an exploratory data analysis (EDA) project on global air pollution trends.  
-It was created as part of an internship assignment for **Digineta**.
+It was created as part of an internship assignment for **Neubrain Solutions**, an AI & Strategy consulting firm based in Mumbai.
 
-- **Skills demonstrated:** Data Cleaning, EDA, Data Visualization, Dashboarding
-- **Tools used:** Python (Pandas, Matplotlib), Power BI
+- **Skills demonstrated:** Data Cleaning, Exploratory Analysis, Insight Communication, Data Visualization  
+- **Tools used:** Python (Pandas, Seaborn, Matplotlib)
+
 
 ---
 
 ## 📌 Project Overview
 
-Air pollution is a major global health risk. The goal of this project is to analyze air pollution data across cities and years, identify key trends, and visualize insights that can help inform decisions.
-
-In this project, I performed:
-- Data Cleaning of the raw dataset
-- Exploratory Data Analysis (EDA)
-- Visualization of trends (Python + Power BI)
-- Summary of key insights
-
+Air pollution is one of the most urgent environmental challenges globally.  
+This project analyzes pollution levels across hundreds of cities over several years to uncover key patterns and generate insight-driven visuals for strategic decisions.
 
 ---
-
-
 
 ## 🛠️ Process
 
 ### 1️⃣ Data Cleaning
 
-- Missing values handled (`-` replaced with `NaN`)
-- All pollution-related columns converted to numeric
-- Cleaned data saved to `cleaned_air_pollution.csv` for further analysis and dashboarding
-
-### 2️⃣ Exploratory Data Analysis (EDA)
-
-#### ➤ In Python
-
-- **Top 10 Most Polluted Cities (2022)** → CSV + Bar Chart
-- **Top 10 Least Polluted Cities (2022)** → CSV + Bar Chart
-- **Monthly Average Pollution Trend** → Line Chart
-- **Yearly Average Pollution Trend** → Line Chart
-
-#### ➤ In Power BI (next commit)
-
-- Full dashboard with key charts for visualization and storytelling
-- Visual comparison of top & least polluted cities
-- Time-series visualization of trends
+- Replaced placeholder values (`-`) with `NaN`
+- Converted all pollution columns to numeric format
+- Split the original `City` column into two separate columns: `CityName` and `Country`
+- Rearranged year columns (`2017` to `2022`) into chronological order
+- Saved the cleaned dataset as `data/cleaned_air_pollution.csv` for reuse in visualizations and Power BI
 
 ---
 
-## 📊 Results
+## 📊 Visual Analysis (Python + Seaborn/Matplotlib)
 
-### Graphs
+### 📈 1. Mumbai vs Pune vs Nashik – Pollution Over Years
+![City Trend](outputs/graphs/neubrain_cities_trend.png)
 
-#### 1️⃣ Monthly Average Pollution Trend
+**Interpretation:**  
+This multi-line chart shows how air pollution levels changed in three key Maharashtra cities between 2017 and 2022. While all cities saw a dip in 2020, Pune maintained a relatively lower pollution level compared to Mumbai and Nashik.
 
-![Monthly Trend](outputs/graphs/monthly_trend_2022.png)
+---
 
-#### 2️⃣ Yearly Average Pollution Trend
+### 🌆 2. Top 10 Most Polluted Cities (2022)
+![Top Polluted](outputs/graphs/top10_polluted_2022.png)
 
-![Yearly Trend](outputs/graphs/yearly_trend.png)
+**Interpretation:**  
+This enhanced bar chart uses a color gradient to show the intensity of pollution. Most of the top 10 cities are in India, showcasing the regional concentration of air quality issues.
 
-#### 3️⃣ Power BI Dashboard (Coming Soon 🚀)
+---
 
-*(Will add screenshot in next commit)*
+### 🍃 3. Top 10 Least Polluted Cities (2022)
+![Least Polluted](outputs/graphs/top10_least_polluted_2022.png)
+
+**Interpretation:**  
+These cities recorded the lowest pollution in 2022. The lightest bars represent the cleanest air, reflecting lower industrial density and better environmental regulations.
+
+---
+
+### 📅 4. Monthly Average Pollution Trend
+![Monthly Average](outputs/graphs/monthly_avg_pollution.png)
+
+**Interpretation:**  
+Pollution peaks in **winter months** (Nov–Jan) and dips during the **monsoon and summer** (June–August), reflecting seasonal human and industrial activities.
+
+---
+
+### 🔄 5. Pollution Improvement vs Decline (2017–2022)
+![Change Chart](outputs/graphs/improvement_vs_decline.png)
+
+**Interpretation:**  
+This pastel-colored chart shows the top 10 cities with the most improvement (green) and worst decline (red) in pollution levels over five years. While cities like Pune improved, others like Jaipur worsened significantly.
 
 ---
 
 ## 💡 Key Insights
 
-- The **most polluted cities** in 2022 were concentrated in **South Asia** — mainly **India, Pakistan**, and **China**.
-- **Winter months** (October to December) consistently showed **higher pollution levels**, likely due to weather patterns and human activities.
-- **Summer months** had comparatively lower pollution.
-- **Yearly trends** indicate a **drop in pollution in 2020**, likely due to global **COVID-19 lockdowns**, followed by a rebound in 2021–2022.
-- Data-driven dashboards can help monitor pollution trends and inform environmental policies.
+- **South Asian cities**, especially in **India**, dominate the list of most polluted locations.
+- **Winter seasons** consistently see a surge in pollution due to climatic and cultural factors (e.g., festivals, stubble burning).
+- **2020** witnessed a sharp decline in pollution globally, likely due to **COVID-19 lockdowns**.
+- Cities like **Pune** show potential as success stories with declining pollution trends.
+- Data storytelling with color gradients and comparative visuals helps uncover geographic and temporal pollution patterns.
 
 ---
 
 ## 🚀 How to Run the Project
 
 ```bash
-# Clone this repo
+# 1. Clone the repository
 git clone <your-repo-url>
 
-# Navigate into project folder
+# 2. Navigate to the project directory
 cd Air-Pollution-Analysis
 
-# Run main.py to generate outputs and graphs
+# 3. Install dependencies
+pip install pandas numpy matplotlib seaborn
+
+# 4. Run the main script to generate outputs
 python main.py
