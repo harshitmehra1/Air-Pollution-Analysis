@@ -1,11 +1,11 @@
-City,2022
-"PakistanLahore, Pakistan",97.4
-"ChinaHotan, China",94.3
-"IndiaBhiwadi, India",92.7
-"IndiaDelhi (NCT), India",92.6
-"PakistanPeshawar, Pakistan",91.8
-"IndiaDarbhanga, India",90.3
-"IndiaAsopur, India",90.2
-"ChadN'Djamena, Chad",89.7
-"IndiaNew Delhi, India",89.1
-"IndiaPatna, India",88.9
+CityName,Country,2022
+Lahore,Pakistan,97.4
+Hotan,China,94.3
+Bhiwadi,India,92.7
+Delhi (NCT),India,92.6
+Peshawar,Pakistan,91.8
+Darbhanga,India,90.3
+Asopur,India,90.2
+N'Djamena,Chad,89.7
+New Delhi,India,89.1
+Patna,India,88.9

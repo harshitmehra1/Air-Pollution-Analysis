@@ -1,11 +1,11 @@
-City,2022
-"USAArch Cape, USA",0.2
-"IndonesiaKuta, Indonesia",0.5
-"USARoanoke Rapids, USA",0.6
-"USACastroville, USA",0.8
-"USAWilson, USA",0.8
-"South AfricaOudtshoorn, South Africa",0.8
-"USASereno del Mar, USA",0.9
-"IndiaTarakeswar, India",0.9
-"USAPiedmont, USA",0.9
-"USATerryville, USA",1.0
+CityName,Country,2022
+Arch Cape,USA,0.2
+Kuta,Indonesia,0.5
+Roanoke Rapids,USA,0.6
+Castroville,USA,0.8
+Wilson,USA,0.8
+Oudtshoorn,South Africa,0.8
+Sereno del Mar,USA,0.9
+Tarakeswar,India,0.9
+Piedmont,USA,0.9
+Terryville,USA,1.0

@@ -3,6 +3,11 @@
 from scripts.data_cleaning import load_and_clean_data
 import matplotlib.pyplot as plt
 import pandas as pd
+import os
+
+# Create necessary directories if they don't exist
+os.makedirs('outputs/graphs', exist_ok=True)
+os.makedirs('outputs', exist_ok=True)
 
 # Load and clean data
 df = load_and_clean_data('data/Air Pollution.csv')
@@ -12,13 +17,13 @@ print(df.info())
 print(df.head())
 
 # --- Top 10 Most Polluted Cities ---
-top10_polluted = df[['City', '2022']].sort_values(by='2022', ascending=False).head(10)
+top10_polluted = df[['CityName', 'Country', '2022']].sort_values(by='2022', ascending=False).head(10)
 print("\nTop 10 Most Polluted Cities in 2022:")
 print(top10_polluted)
 top10_polluted.to_csv('outputs/top10_most_polluted_2022.csv', index=False)
 
 # --- Top 10 Least Polluted Cities ---
-least_polluted = df[df['2022'] > 0][['City', '2022']].sort_values(by='2022', ascending=True).head(10)
+least_polluted = df[df['2022'] > 0][['CityName', 'Country', '2022']].sort_values(by='2022', ascending=True).head(10)
 print("\nTop 10 Least Polluted Cities in 2022:")
 print(least_polluted)
 least_polluted.to_csv('outputs/top10_least_polluted_2022.csv', index=False)
@@ -48,8 +53,5 @@ plt.grid(True)
 plt.savefig('outputs/graphs/yearly_trend.png')
 plt.show()
 
-
-
 # Save the full cleaned data to CSV for Power BI use
 df.to_csv('data/cleaned_air_pollution.csv', index=False)
-
