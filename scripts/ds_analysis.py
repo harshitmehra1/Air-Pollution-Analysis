@@ -130,7 +130,15 @@ def detect_anomalous_indian_cities(df):
     
     # Plot
     plt.figure(figsize=(8, 5))
-    sns.barplot(data=top5_anomalous, x='Volatility', y='CityName', palette='coolwarm')
+    sns.barplot(
+    data=top5_anomalous,
+    x='Volatility',
+    y='CityName',
+    hue='Volatility',
+    dodge=False,
+    palette=sns.color_palette("coolwarm", as_cmap=True),
+    legend=False
+)
 
     plt.title("Top 5 Anomalous Indian Cities (Pollution Volatility)")
     plt.xlabel("Volatility (% change std dev)")
