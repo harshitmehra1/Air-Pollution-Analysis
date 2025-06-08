@@ -219,6 +219,10 @@ Higher volatility suggests irregular and unstable pollution patterns, which may 
 - **Festive or seasonal pollution events**
 - **Possible data quality issues or gaps**
 
+**Color Note:**  
+The bar colors represent volatility intensity — **red bars indicate higher volatility**, **blue bars indicate lower volatility**.  
+This allows for quick visual identification of the most unstable pollution patterns.
+
 ### 📊 Current Top 5 Most Volatile Indian Cities:
 
 | City     | Volatility (%) |

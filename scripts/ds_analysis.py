@@ -103,7 +103,7 @@ def detect_anomalous_indian_cities(df):
             continue
 
         # Forward fill small missing gaps
-        pollution_values = pd.Series(pollution_values).fillna(method='ffill').fillna(method='bfill').values
+        pollution_values = pd.Series(pollution_values).ffill().bfill().values
 
         # Calculate % year-over-year change
         pct_changes = []
@@ -158,4 +158,8 @@ def detect_anomalous_indian_cities(df):
 
     plt.tight_layout()
     plt.savefig('outputs/graphs/anomalous_indian_cities.png')
+
+    plt.legend([],[], frameon=False)  # remove empty legend space
+
+
     plt.show()
